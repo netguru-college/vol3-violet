@@ -3,9 +3,7 @@ cache:         bundler
 env:
 - TEST_SUITE=controllers
 - TEST_SUITE=models
+- TEST_SUITE=helpers
 script:
 - "bundle exec rake spec:$TEST_SUITE"
-- "bundle exec bundle-audit check --update"
-- "bundle exec rubocop"
-- "bundle exec brakeman --quiet"
 
