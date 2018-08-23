@@ -1,11 +1,14 @@
-language:      ruby
-cache:         bundler
-env:
-- TEST_SUITE=controllers
-- TEST_SUITE=models
-script:
-- "bundle exec rake spec:$TEST_SUITE"
-- "bundle exec bundle-audit check --update"
-- "bundle exec rubocop"
-- "bundle exec brakeman --quiet"
-
+language: ruby
+cache:
+- bundler
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+- bundle exec rake assets:precompile
+deploy:
+ provider: heroku
+ api_key:
+  secure: "BMbtLqhhM2xevvV/GK9aZLk9eTnu65fZ7BUdTSi4cJ+rYVd5UjC65WVtde7hgSmd10mbxMf5ZcZX1jZQTVIy3Qn92E4T1iXjMgxSqWtTX8v48yA5rkqhlO7rmSZ263ekrmsrXnZuNrJGhqSCh+/RMrl3d1fDBMpg2zSiXomE3zyPVcGycWQdgg20xMc/ue5rbiwSiivlbhs/PwzLhAWV8ZqfoCAl8XetrPGYCFOEarpqxQL06laq7zekMzmmPLIGzzPx9WJFzFUE4TUicdTg9PKys1/3sjDXbIFwKPMNwk5G8AtMPFgOuBBkMLmWbvZwwfvmEe3QwUi47WxpOdwCwwMVo+YHg69g23Ff2BbV2ytOrrINK3goshfNo9s54uXIjUX9hRrxnX/j83FjY79UxD8ZimNuMmFiZCcLXyr9CMMiYI1TLAfvGXTse3Sef3LD/mA1utVj8pYiehXwMUWgFlLtF6h89DXfdwnCeqSIksA2t2FSLsccUPM6K/WYJm3aPus2pT0bPeC4cosM8JA8lLS0+FR8cAoW8S6Ql4jRLZCWLw2MdZFuQbUu/61olDoGN+9kstAWBYRMdBc548qTRAZiahHaA0u1ibTDEsc3dQgCqcWdMr8krwnRY+PDb2J00xt/jZ+2SkQWAQM3KnJfZVEOqJO9lmQt8SU/lZ+2ALM="
+ app: rails-test-app-article
+ on:
+  repo: felipeluizsoares/rails-test-app
