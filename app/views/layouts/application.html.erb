@@ -12,12 +12,14 @@
   <body>
     <%= render "shared/navbar" %>
     <div class="container-fluid">
+
       <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
+        <p class="alert alert-success" id="notice-alert"><%= notice %></p>
         <% end %>
       <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
+        <p class="alert alert-danger" id="alert-alert"><%= alert %></p>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
