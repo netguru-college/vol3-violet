@@ -1,0 +1,21 @@
+
+<% if group.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+    <ul><% group.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="actions">
+  <%= form_for group do |group_form| %>
+    <%= group_form.label ("Group's name: ") %>
+    <%= group_form.text_field :name, placeholder: "Name" %><br><br>
+    <%= group_form.label ("Invite friends: ") %>
+    <%= email_field(:user, :address) %>
+    <br>
+    <%= group_form.submit "Submit", class: "btn btn-outline-success float-left" %>
+  <% end %>
+</div>
