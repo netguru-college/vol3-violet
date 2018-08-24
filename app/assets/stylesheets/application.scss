@@ -13,3 +13,16 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+.container-fluid {
+  width: 100%;
+  padding-top: 100px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.navbar a {
+  color: #ffffff;
+}
