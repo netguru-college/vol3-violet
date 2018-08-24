@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SplitGuru</title>
+    <title>Split Guru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,12 +10,15 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-    <%= yield %>
+    <%= render "shared/navbar" %>
+    <div class="container-fluid">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>
