@@ -1,0 +1,11 @@
+<table class="table table-striped">
+  <tbody>
+  <% @all_users.each do |user| %>
+      <tr>
+        <td><%= user.username %></td>
+        <td><%= image_tag(user.avatar.url) unless user.avatar.file.nil? %></td>
+        <td><%= image_tag(asset_path('default_avatar.png')) if user.avatar.file.nil? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
