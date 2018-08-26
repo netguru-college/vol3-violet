@@ -12,11 +12,19 @@ class UsersController < ApplicationController
   def destroy; end
 
   def ban
-    @user = User.find(params[:id])
-    if @user.update(user_params)
-      redirect_to users_url
-    else
-      redirect_to users_url, notice: 'Could not perform operation'
+    begin
+        # manually authorize
+        # futher references:
+        # https://github.com/CanCanCommunity/cancancan/wiki/authorizing-controller-actions
+        authorize! :ban, User
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+          redirect_to users_url
+        else
+          redirect_to users_url, notice: 'Could not perform operation'
+        end
+    rescue
+      redirect_to root_path, alert: 'You can\'t perform this action!'
     end
   end
 

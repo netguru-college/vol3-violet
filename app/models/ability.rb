@@ -1,4 +1,4 @@
-eeclass Ability
+class Ability
   include CanCan::Ability
 
   def initialize(user)
@@ -7,7 +7,7 @@ eeclass Ability
       # abilities for non-admin
       if user.admin?
         # abilities for admins
-        can :index, User
+        can :ban, User
       end
     end
   end
