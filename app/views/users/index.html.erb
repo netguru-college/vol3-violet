@@ -17,7 +17,7 @@
                   <td><%= link_to 'Unban', user_path(id: user.id, user: { blocked:false }),controller: :users_controller,action: :update, method: :put, data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
                 <% else %>
                   <td></td>
-                  <td><%= link_to 'Ban', user_path(id: user.id, user: { blocked:true }),controller: :users_controller,action: :update, method: :put, data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
+                  <td><%= link_to 'Ban', ban_path(user), data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
                 <% end %>
                   <td><%= link_to 'Delete', user_path(id: user.id), method: :delete, data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-danger ml-2r' %></td>
             <% end %>
@@ -26,4 +26,5 @@
     <% end %>
   </tbody>
 </table>
+
 <%= will_paginate @all_users, class: 'apple_pagination mt-4' %>
