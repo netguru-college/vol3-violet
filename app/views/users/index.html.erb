@@ -1,12 +1,16 @@
-<table class="table table-striped">
+<%= will_paginate @all_users, class: 'apple_pagination' %>
+<table class="table table-striped mt-4">
   <tbody>
-    <%= will_paginate @all_users %>
     <% @all_users.each do |user| %>
       <% unless user.admin? %>
           <tr>
+            <% unless user.avatar.file.nil? %>
+                <td><%= image_tag(user.avatar.url(:thumb), class: 'img-thumbnail') %></td>
+            <% end %>
+            <% if user.avatar.file.nil? %>
+              <td><%= image_tag(asset_path('default_avatar.png'), class: 'img-thumbnail')%></td>
+            <% end %>
             <td><%= user.username %></td>
-            <td><%= image_tag(user.avatar.url) unless user.avatar.file.nil? %></td>
-            <td><%= image_tag(asset_path('default_avatar.png')) if user.avatar.file.nil? %></td>
             <% if current_user.admin? %>
                 <% if user.blocked? %>
                   <td>Blocked</td>
@@ -22,3 +26,4 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @all_users, class: 'apple_pagination mt-4' %>

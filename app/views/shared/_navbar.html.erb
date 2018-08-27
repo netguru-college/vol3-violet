@@ -1,17 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-secondary fixed-top" role="navigation" id="mainNav">
     <div class="container">
     <%= link_to "SPLIT GURU", root_path, class: "navbar-brand" %>
-    <div class="navbar-right">
+    <div cl ass="navbar-right">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
+          <li><%= link_to "All users", users_path, class: "navbar-link" %></li>
           <li><%= link_to "Profile", root_path %></li>
           <li><%= link_to "Groups", groups_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
         </ul>
       <% else %>
         <ul class="nav navbar-nav">
-          <li><%= link_to "Log in", new_user_session_path, class: "mx-0 mx-lg-1" %></li>
-          <li><%= link_to "Sign up", new_user_registration_path, class: "mx-0 mx-lg-1" %></li>
+          <li><%= link_to "Log in", new_user_session_path, class: "navbar-link" %></li>
+          <li><%= link_to "Sign up", new_user_registration_path, class: "navbar-link" %></li>
         </ul>
       <% end %>
     </div>
