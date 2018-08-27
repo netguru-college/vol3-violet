@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_26_161517) do
+ActiveRecord::Schema.define(version: 2018_08_27_091135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 2018_08_26_161517) do
     t.bigint "user_id"
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
     t.string "type"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_bills_on_group_id"
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
 
@@ -62,6 +64,7 @@ ActiveRecord::Schema.define(version: 2018_08_26_161517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bills", "groups"
   add_foreign_key "bills", "users"
   add_foreign_key "debts", "bills"
   add_foreign_key "debts", "users"
