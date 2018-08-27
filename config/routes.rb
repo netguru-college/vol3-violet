@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users
-  root to: 'home#index'
+  root to: "home#index"
+  resources :users, only: [:show, :index, :destroy]
   resources :groups
+  put 'users/:id', to: 'users#ban'
 end
