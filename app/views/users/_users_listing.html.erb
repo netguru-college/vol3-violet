@@ -1,0 +1,30 @@
+<%= will_paginate @all_users, class: 'apple_pagination' %>
+<table class="table table-striped mt-4">
+  <tbody>
+    <% @all_users.each do |user| %>
+      <% unless user.admin? %>
+          <tr>
+            <% unless user.avatar.file.nil? %>
+                <td><%= image_tag(user.avatar.url(:thumb), class: 'img-thumbnail') %></td>
+            <% end %>
+            <% if user.avatar.file.nil? %>
+              <td><%= image_tag(asset_path('default_avatar.png'), class: 'img-thumbnail')%></td>
+            <% end %>
+            <td><%= user.username %></td>
+            <% if current_user.admin? %>
+                <% if user.blocked? %>
+                  <td>Blocked</td>
+                  <td><%= link_to 'Unban', user_path(id: user.id, user: { blocked:false }),controller: :users_controller,action: :update, method: :put, data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
+                <% else %>
+                  <td></td>
+                  <td><%= link_to 'Ban', ban_path(user), data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
+                <% end %>
+                  <td><%= link_to 'Delete', user_path(id: user.id), method: :delete, data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-danger ml-2r' %></td>
+            <% end %>
+          </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @all_users, class: 'apple_pagination mt-4' %>
