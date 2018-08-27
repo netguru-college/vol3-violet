@@ -5,13 +5,13 @@ class Ability
 
   def initialize(user)
     @user = user
-    can :ban, User if admin?
-    can :destroy, User if admin?
+    can :ban, User if admin_privilege
+    can :destroy, User if admin_privilege
   end
 
   private
 
-  def admin?
+  def admin_privilege
     current_user.admin? && current_user.present? && !user.admin?
   end
 end
