@@ -3,12 +3,8 @@ class Ability
 
   def initialize(user)
     # abilities for all users
-    if user.present?
-      # abilities for non-admin
-      if user.admin?
-        # abilities for admins
-        can :ban, User
-      end
-    end
+    # abilities for admins
+    can :ban, User if user.admin? && use.present?
+    can :destroy, User if user.admin? && user.present?
   end
 end
