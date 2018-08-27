@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   def show; end
 
   def destroy
-    authorize! :destroy, User
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
     redirect_to root_path, notice: 'User was successfully destroyed!'
   rescue StandardError
@@ -19,18 +19,15 @@ class UsersController < ApplicationController
   end
 
   def ban
-    # manually authorize
-    # futher references:
-    # https://github.com/CanCanCommunity/cancancan/wiki/authorizing-controller-actions
-    # authorize! :ban, User
-    if BanUser.new(params[:id]).call
-      redirect_to users_url
-    else
-      redirect_to users_url, notice: 'Could not perform operation'
+    @user = User.find(params[:id])
+    authorize! :ban, @user
+    unless BanUser.new(params[:id]).call
+      redirect_to root_path, alert: 'Could\t update user!'
     end
-  rescue StandardError
-    redirect_to root_path, alert: 'You can\'t perform this action!'
+      rescue StandardError
+      redirect_to root_path, alert: 'You can\'t perform this action!'
   end
+
 
   private
 

@@ -5,6 +5,7 @@ class BanUser
 
   def call
     @user = User.find_by(id: @user_id)
+    authorize! :ban, @user
     return false if @user.nil?
     @user.update(blocked: true)
     true
