@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, User
     @user = User.find(params[:id])
+    authorize! :destroy, @user
     @user.destroy
     redirect_to root_path, notice: 'User was successfully destroyed!'
   rescue StandardError
@@ -25,8 +25,8 @@ class UsersController < ApplicationController
     # manually authorize
     # futher references:
     # https://github.com/CanCanCommunity/cancancan/wiki/authorizing-controller-actions
-    authorize! :ban, User
     @user = User.find(params[:id])
+    authorize! :ban, @user
     if @user.update(user_params)
       redirect_to users_url
     else

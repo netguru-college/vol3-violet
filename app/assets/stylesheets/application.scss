@@ -13,6 +13,7 @@
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "pagination";
 
 .container-fluid {
   width: 100%;
@@ -56,6 +57,11 @@ color: #1eb28a;
   padding: 20px;
 }
 
+
 .not-decorated-list {
   list-style-type: none;
+}
+
+.navbar-link mx-lg-1 {
+  margin: 0;
 }
