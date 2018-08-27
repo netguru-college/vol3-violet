@@ -19,16 +19,9 @@ class UsersController < ApplicationController
   end
 
   def ban
-    # manually authorize
-    # futher references:
-    # https://github.com/CanCanCommunity/cancancan/wiki/authorizing-controller-actions
     @user = User.find(params[:id])
     authorize! :ban, @user
-    if @user.update(user_params)
-      redirect_to users_url
-    else
-      redirect_to users_url, notice: 'Could not perform operation'
-    end
+    redirect_to root_path, alert: 'Couldn\t update user!' unless BanUser.new(params[:id]).call
   rescue StandardError
     redirect_to root_path, alert: 'You can\'t perform this action!'
   end
