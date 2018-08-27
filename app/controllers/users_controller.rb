@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if (can? :destroy, User) && (!@user.admin?)
+    if can?(:destroy, User) && !@user.admin?
       @user.destroy
       redirect_to root_path, notice: 'User was successfully destroyed!'
     else
