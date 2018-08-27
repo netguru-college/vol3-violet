@@ -9,24 +9,28 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # @user = current_user
   end
 
   def destroy
     @user = User.find(params[:id])
-    authorize! :destroy, @user
-    @user.destroy
-    redirect_to root_path, notice: 'User was successfully destroyed!'
-  rescue StandardError
-    redirect_to root_path, alert: 'You can\'t perform this action!'
+    if (can? :destroy, User) && (!@user.admin?)
+      @user.destroy
+      redirect_to root_path, notice: 'User was successfully destroyed!'
+    else
+      redirect_to root_path, alert: 'You can\'t perform this action!'
+    end
   end
 
+  # WTFFFF ?!
   def ban
-    @user = User.find(params[:id])
-    authorize! :ban, @user
-    redirect_to root_path, alert: 'Couldn\t update user!' unless BanUser.new(params[:id]).call
-  rescue StandardError
-    redirect_to root_path, alert: 'You can\'t perform this action!'
+    if can? :ban, User
+      value = BanUser.new(params[:id]).call
+      flash[:alert] = 'Could not perform this action' unless value
+      flash[:notice] = 'Done!' if value
+    else
+      flash[:alert] = 'You are not permitted to perform this action!'
+    end
+    redirect_to root_path
   end
 
   private
