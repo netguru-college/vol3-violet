@@ -1,6 +1,6 @@
-<table class="table table-striped">
+<%= will_paginate @all_users, class: 'apple_pagination' %>
+<table class="table table-striped mt-4">
   <tbody>
-    <%= will_paginate @all_users %>
     <% @all_users.each do |user| %>
       <% unless user.admin? %>
           <tr>
@@ -22,3 +22,4 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @all_users, class: 'apple_pagination' %>
