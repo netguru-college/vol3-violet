@@ -4,7 +4,7 @@
     <div class="navbar-right">
       <% if user_signed_in? %>
         <ul class="nav navbar-nav">
-          <li><%= link_to "Profile", root_path %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
           <li><%= link_to "Groups", groups_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
         </ul>

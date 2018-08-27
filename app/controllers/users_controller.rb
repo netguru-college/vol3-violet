@@ -7,7 +7,10 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    # @user = User.find(params[:id])r
+    @user = current_user
+  end
 
   def destroy
     authorize! :destroy, User
