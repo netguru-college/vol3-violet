@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @all_users = User.all
+    @all_users = User.all.paginate(page: params[:page], per_page: 5)
   end
 
   def create; end
@@ -21,13 +21,10 @@ class UsersController < ApplicationController
   def ban
     @user = User.find(params[:id])
     authorize! :ban, @user
-    unless BanUser.new(params[:id]).call
-      redirect_to root_path, alert: 'Could\t update user!'
-    end
-      rescue StandardError
-      redirect_to root_path, alert: 'You can\'t perform this action!'
+    redirect_to root_path, alert: 'Could\t update user!' unless BanUser.new(params[:id]).call
+  rescue StandardError
+    redirect_to root_path, alert: 'You can\'t perform this action!'
   end
-
 
   private
 
