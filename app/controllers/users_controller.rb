@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def ban
     @user = User.find(params[:id])
     authorize! :ban, @user
-    redirect_to root_path, alert: 'Could\t update user!' unless BanUser.new(params[:id]).call
+    redirect_to root_path, alert: 'Couldn\t update user!' unless BanUser.new(params[:id]).call
   rescue StandardError
     redirect_to root_path, alert: 'You can\'t perform this action!'
   end
