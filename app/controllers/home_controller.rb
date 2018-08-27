@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @groups = current_user.groups
+    @user = current_user
+    @all_users = User.all.paginate(page: params[:page], per_page: 5)
   end
 end
