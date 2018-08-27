@@ -1,4 +1,5 @@
 class AvatarUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MiniMagick
   # Choose what kind of storage to use for this uploader:
   storage :file
 
@@ -16,5 +17,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # validate size of avatar
   def size_range
     1..10.megabytes
+  end
+
+  version :thumb do
+    process resize_to_fill: [200, 200]
   end
 end
