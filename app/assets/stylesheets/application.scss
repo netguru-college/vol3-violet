@@ -23,8 +23,25 @@
   margin-left: auto;
 }
 
-.navbar a {
-  color: #ffffff;
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 5px;
+}
+
+.navbar-brand:hover {
+color: #1eb28a;
+}
+
+.navbar-nav > li > a {
+  color: white;
+  padding: 15px;
+}
+
+.navbar-nav > li > a:hover {
+  text-decoration: none;
+  color: #1eb28a;
 }
 
 .jumbotron {

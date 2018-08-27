@@ -23,6 +23,16 @@ gem 'will_paginate', '~> 3.1.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker'
+gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rubocop', '~> 0.58.2', require: false
+gem 'devise'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails', '~> 4.3.3'
+gem 'carrierwave', '~> 1.0'
+
+group :development, :test do
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '~> 3.7'
 end
 
