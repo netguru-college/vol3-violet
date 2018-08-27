@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users, only: [:show, :index, :destroy]
   resources :groups
-  put 'users/:id', to: 'users#ban'
+  get 'users/:id/ban', to: 'users#ban', as: 'ban'
 end

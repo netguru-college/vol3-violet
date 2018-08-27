@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @all_users = User.all.paginate(page: params[:page], per_page: 5)
+    @all_users = User.all
   end
 
   def create; end
@@ -22,9 +22,8 @@ class UsersController < ApplicationController
     # manually authorize
     # futher references:
     # https://github.com/CanCanCommunity/cancancan/wiki/authorizing-controller-actions
-    authorize! :ban, User
-    @user = User.find(params[:id])
-    if @user.update(user_params)
+    # authorize! :ban, User
+    if BanUser.new(params[:id]).call
       redirect_to users_url
     else
       redirect_to users_url, notice: 'Could not perform operation'
