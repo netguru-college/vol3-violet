@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
       if @group.save
+        User.invite!({ email: params[:user][:address] }, current_user)
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render :show, status: :created, location: @group }
       else
