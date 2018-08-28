@@ -50,7 +50,6 @@ class GroupsController < ApplicationController
 
   def bills
     # byebug
-    @bills = 
     respond_to do |format|
       format.js
     end
