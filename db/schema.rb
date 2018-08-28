@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2018_08_28_072554) do
+ActiveRecord::Schema.define(version: 2018_08_28_124232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_072554) do
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
     t.string "split_type"
     t.bigint "group_id"
+    t.string "title"
     t.index ["group_id"], name: "index_bills_on_group_id"
     t.index ["payer_id"], name: "index_bills_on_payer_id"
   end
@@ -32,6 +32,12 @@ ActiveRecord::Schema.define(version: 2018_08_28_072554) do
     t.boolean "paid"
     t.index ["bill_id"], name: "index_debts_on_bill_id"
     t.index ["borrower_id"], name: "index_debts_on_borrower_id"
+  end
+
+  create_table "group_models", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "group_users", force: :cascade do |t|
@@ -61,6 +67,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_072554) do
     t.string "avatar"
     t.boolean "admin", default: false, null: false
     t.boolean "blocked", default: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[show edit update destroy bills]
 
   def index
     @groups = Group.all
@@ -45,6 +45,13 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to groups_url, notice: 'Group was successfully deleted.' }
       format.json { head :no_content }
+    end
+  end
+
+  def bills
+    # byebug
+    respond_to do |format|
+      format.js
     end
   end
 

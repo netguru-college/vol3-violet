@@ -20,7 +20,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path("default_avatar.png")
+    ActionController::Base.helpers.asset_path('default_avatar.png')
   end
 
   version :thumb do
