@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_08_28_072554) do
 
   # These are extensions that must be enabled in order to support this database
@@ -18,7 +19,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_072554) do
   create_table "bills", force: :cascade do |t|
     t.bigint "payer_id"
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
-    t.string "type"
+    t.string "split_type"
     t.bigint "group_id"
     t.index ["group_id"], name: "index_bills_on_group_id"
     t.index ["payer_id"], name: "index_bills_on_payer_id"
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_072554) do
     t.bigint "bill_id"
     t.bigint "borrower_id"
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
-    t.boolean "status"
+    t.boolean "paid"
     t.index ["bill_id"], name: "index_debts_on_bill_id"
     t.index ["borrower_id"], name: "index_debts_on_borrower_id"
   end

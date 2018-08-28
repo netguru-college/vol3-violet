@@ -12,7 +12,7 @@
             <% end %>
             <td><%= user.username %></td>
             <!-- current_user.admin? -->
-            <% if true %>
+            <% if current_user.admin? %>
                 <% if user.blocked? %>
                   <td>Blocked</td>
                   <td><%= link_to 'Unban', ban_path(user), data: {confirm: "You sure?"}, role: 'button', class: 'btn btn-warning ml-2r' %></td>
