@@ -1,0 +1,22 @@
+<div class="card user-details">
+  <div class="card-header">
+    User details
+  </div>
+  <div class="card-body">
+    <div class="card-title">
+        <%= @user.username %>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <%= image_tag(@user.avatar.url) unless @user.avatar.url.nil? %>
+      </div>
+      <div class="col-md-8 card-text">
+        <ul class="not-decorated-list">
+          <li>Email: <strong><%= @user.email %></strong></li>
+          <li>Belongs to <strong><%= pluralize(@user.groups.count, 'group') %></strong></li>
+          <li>Joined Split Guru <strong><%= time_ago_in_words(@user.created_at) %></strong> ago</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

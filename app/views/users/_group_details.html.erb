@@ -1,0 +1,48 @@
+<div class="card group-details">
+  <div class="card-header">
+    Groups
+  </div>
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-md-3">
+        <p><strong>Name</strong></p>
+      </div>
+      <div class="col-md-3">
+        <p><strong>Created on</strong></p>
+      </div>
+      <div class="col-md-3">
+        <p><strong>Members</strong></p>
+      </div>
+      <div class="col-md-3">
+        <p><strong>Actions</strong></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <% @user.groups.each do |group| %>
+        <div class="col-md-3">
+          <p><%= group.name %></p>
+        </div>
+        <div class="col-md-3">
+          <p><%= group.created_at.strftime("%m/%d/%Y") %></p>
+        </div>
+        <div class="col-md-3">
+          <% group.users.each do |member| %>
+            <ul class="not-decorated-list">
+              <li><%= link_to member.username, user_path(member) %></li>
+            </ul>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <ul class="not-decorated-list">
+            <li><%= link_to 'Edit', group_path(group) %></li>
+            <li><%= link_to 'Delete', group_path(group), method: :delete %></li>
+            <li><%= link_to 'Show bills', group_bills_ajax_path(group.id), remote: true %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to "Create new group", new_group_path %>
+  </div>
+</div>
