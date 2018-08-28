@@ -5,6 +5,7 @@ class Ability
     @current_user = user
     can :ban, User if admin_privilege
     can :destroy, User if admin_privilege
+    # can :destroy, Group if admin_privilege ||
   end
 
   private
