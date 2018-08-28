@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_091135) do
+ActiveRecord::Schema.define(version: 2018_08_28_071850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bills", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "payer_id"
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
     t.string "type"
     t.bigint "group_id"
     t.index ["group_id"], name: "index_bills_on_group_id"
-    t.index ["user_id"], name: "index_bills_on_user_id"
+    t.index ["payer_id"], name: "index_bills_on_payer_id"
   end
 
   create_table "debts", force: :cascade do |t|
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_091135) do
   end
 
   add_foreign_key "bills", "groups"
-  add_foreign_key "bills", "users"
+  add_foreign_key "bills", "users", column: "payer_id"
   add_foreign_key "debts", "bills"
   add_foreign_key "debts", "users"
 end
