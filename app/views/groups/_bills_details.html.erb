@@ -1,0 +1,10 @@
+<div class="card-header">
+  Bills for <%= group.name %> group
+</div>
+<div class="card-body">
+  <% group.bills.each do |bill| %>
+    <ul class="not-decorated-list">
+      <li>Title: <%= bill.title %>, amount: <%= bill.amount %></li>
+    </ul>
+  <% end %>
+</div>

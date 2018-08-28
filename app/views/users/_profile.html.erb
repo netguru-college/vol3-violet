@@ -11,13 +11,17 @@
   </div>
 
   <div class="row card-deck">
-    <%= render 'user_details', object: @user %>
-    <%= render 'debts_history', object: @user %>
+      <%= render 'users/user_details', object: @user %>
+      <%= render 'users/debt_details', object: @user %>
   </div>
 
+  <% chosen_group = @user.groups.first %>
+
   <div class="row card-deck">
-    <%= render 'group_details', object: @user %>
-    <%= render 'bills', object: @user %>
+      <%= render 'users/group_details', object: @user %>
+      <div class="card bill-details" id="bill-details">
+
+      </div>
   </div>
 
 </div>

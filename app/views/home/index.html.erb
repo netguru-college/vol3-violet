@@ -1,5 +1,5 @@
 <% if current_user.admin %>
   <%= render 'users/users_listing', object: @all_users %>
 <% else %>
-  <%= render 'users/profile', object: @user %>
+  <%= render 'users/profile', object: current_user %>
 <% end %>

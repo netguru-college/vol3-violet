@@ -3,6 +3,7 @@
     Groups
   </div>
   <div class="card-body">
+
     <table>
       <thead>
         <tr>
@@ -15,7 +16,7 @@
       <tbody>
         <% @user.groups.each do |group| %>
           <tr>
-            <td><%= link_to group.name, group_path(group) %></td>
+            <td><%= group.name %></td>
             <td><%= group.created_at.strftime("%m/%d/%Y") %></td>
             <td>
               <% group.users.each do |member| %>
@@ -25,6 +26,9 @@
             <td>
               <%= link_to 'Edit', group_path(group) %>
               <%= link_to 'Delete', group_path(group), method: :delete %>
+            </td>
+            <td>
+              <%= link_to 'Show bills', group_bills_path(group.id), remote: true %>
             </td>
           </tr>
         <% end %>

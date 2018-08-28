@@ -1,0 +1,12 @@
+<div class="card debt-details">
+  <div class="card-header">
+    Debts history
+  </div>
+  <div class="card-body">
+    <ul class="not-decorated-list">
+      <% @user.debts_as_borrower.each do |debt| %>
+      <li>You owe <%= debt.bill.payer.username %> <%= number_to_currency(debt.amount) %></li>
+      <% end%>
+    </ul>
+  </div>
+</div>
