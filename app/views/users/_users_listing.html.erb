@@ -1,4 +1,49 @@
 <%= will_paginate @all_users, class: 'apple_pagination' %>
+<div class="container">
+  <% @all_users.each do |user| %>
+    <% unless user.admin? %>
+      <div class="row users-listing">
+        <div class="col-md-3">
+          <%= image_tag(user.avatar.url, class: 'img-thumbnail') %>
+        </div>
+        <div class="col-md-4">
+          <ul class="not-decorated-list">
+            <li><%= user.username %></li>
+            <li>Email: <strong><%= user.email %></strong></li>
+            <li>Belongs to <strong><%= pluralize(user.groups.count, 'group') %></strong></li>
+            <li>Joined Split Guru <strong><%= time_ago_in_words(user.created_at) %></strong> ago</li>
+          </ul>
+        </div>
+        <% if user.blocked? %>
+          <div class="col-md-2">
+            <p>Blocked</p>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Unban', user_path(id: user.id, user: { blocked: false }),
+                controller: :users_controller, action: :update, method: :put,
+                data: {confirm: "You sure?"}, role: 'button',
+                class: 'btn btn-success ml-2r' %>
+            <%= link_to 'Delete', user_path(id: user.id), method: :delete,
+                data: {confirm: "You sure?"}, role: 'button',
+                class: 'btn btn-danger ml-2r' %>
+          </div>
+        <% else %>
+          <div class="col-md-2">
+            <p></p>
+          </div>
+          <div class="col-md-3">
+            <%= link_to 'Ban', ban_path(user), data: {confirm: "You sure?"},
+                role: 'button', class: 'btn btn-warning ml-2r' %>
+            <%= link_to 'Delete', user_path(id: user.id), method: :delete,
+                data: {confirm: "You sure?"}, role: 'button',
+                class: 'btn btn-danger ml-2r' %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
 <table class="table table-striped mt-4">
   <tbody>
     <% @all_users.each do |user| %>
