@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   has_many :bills_as_payer,    class_name: 'Bill',
                                foreign_key: 'payer_id',
-                               inverse_of: :payer                 # source: :bill
+                               inverse_of: :payer
 
   has_many :debts_as_borrower, class_name: 'Debt',
                                foreign_key: 'borrower_id',
