@@ -1,0 +1,34 @@
+<div class="card group-details">
+  <div class="card-header">
+    Groups
+  </div>
+  <div class="card-body">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Created on</th>
+          <th>Members</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user.groups.each do |group| %>
+          <tr>
+            <td><%= link_to group.name, group_path(group) %></td>
+            <td><%= group.created_at.strftime("%m/%d/%Y") %></td>
+            <td>
+              <% group.users.each do |member| %>
+                <%= link_to member.username, user_path(member) %></br>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to 'Edit', group_path(group) %>
+              <%= link_to 'Delete', group_path(group), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

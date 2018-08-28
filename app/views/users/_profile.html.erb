@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-md-12 user-header">
       <% if current_user == @user %>
@@ -8,55 +9,15 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6 user-details">
-      <div class="row">
-        <div class="col-md-12">
-          <h2><%= @user.username %></h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-          <%= image_tag(@user.avatar.url) unless @user.avatar.url.nil? %>
-        </div>
-        <div class="col-md-8">
-          <ul class="not-decorated-list">
-            <li>Email: <strong><%= @user.email %></strong></li>
-            <li>Belongs to <strong><%= @user.groups.count %></strong> groups</li>
-            <li>Joined Split Guru <strong><%= time_ago_in_words(@user.created_at) %></strong> ago</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 group-details">
-      <h2>Belongs to <%= pluralize(@user.groups.count, 'group') %></h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Created on</th>
-            <th>Members</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @user.groups.each do |group| %>
-            <tr>
-              <td><%= link_to group.name, group_path(group) %></td>
-              <td><%= group.created_at.strftime("%m/%d/%Y") %></td>
-              <td>
-                <% group.users.each do |member| %>
-                  <%= link_to member.username, user_path(member) %></br>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to 'Edit', group_path(group) %>
-                <%= link_to 'Delete', group_path(group), method: :delete %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+
+  <div class="row card-deck">
+    <%= render 'user_details', object: @user %>
+    <%= render 'debts_history', object: @user %>
   </div>
+
+  <div class="row card-deck">
+    <%= render 'group_details', object: @user %>
+    <%= render 'bills', object: @user %>
+  </div>
+
 </div>

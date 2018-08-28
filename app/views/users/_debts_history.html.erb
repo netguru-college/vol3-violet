@@ -1,0 +1,12 @@
+<div class="card debts-history">
+  <div class="card-header">
+    Debts history
+  </div>
+  <div class="card-body">
+    <ul class="not-decorated-list">
+      <% @user.debts_as_borrower.each do |record| %>
+      <li>You owe ...</li>
+      <% end%>
+    </ul>
+  </div>
+</div>
