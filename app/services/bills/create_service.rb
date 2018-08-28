@@ -5,19 +5,19 @@ module Bills
       @borrowers = params[:borrowers]
       @group_id = params[:group_id]
       @payer_id = params[:payer_id]
-      @split_type = params.fetch(:split_type, "equal")
+      @split_type = params.fetch(:split_type, 'equal')
       @splitted_amount = (amount / (borrowers.count + 1))
     end
 
     def call
       if bill.save
-        Bills::CreateDebtsService.new(bill: bill, borrowers: borrowers, amount: splitted_amount).call 
+        Bills::CreateDebtsService.new(bill: bill, borrowers: borrowers, amount: splitted_amount).call
       else
         false
       end
     end
 
-  private
+    private
 
     attr_reader :amount, :borrowers, :group_id, :payer_id, :split_type, :splitted_amount
 

@@ -1,5 +1,4 @@
 class BillsController < ApplicationController
-
   def new
     @bill = Bill.new
   end
@@ -15,7 +14,8 @@ class BillsController < ApplicationController
   end
 
   private
-    def bill_params
-      params.require(:bill).permit(:payer_id, :amount, :split_type, :group_id, { borrowers: [] } )
-    end
+
+  def bill_params
+    params.require(:bill).permit(:payer_id, :amount, :split_type, :group_id, borrowers: [])
+  end
 end

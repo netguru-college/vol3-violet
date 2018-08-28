@@ -12,17 +12,17 @@ module Bills
 
     private
 
-      attr_reader :bill, :borrowers, :amount
+    attr_reader :bill, :borrowers, :amount
 
-      def create_debts
-        borrowers.each do |borrower|
-          Debt.create(
-            bill_id: bill.id,
-            amount: amount,
-            borrower_id: borrower.id,
-            paid: false 
-          )
-        end
+    def create_debts
+      borrowers.each do |borrower|
+        Debt.create(
+          bill_id: bill.id,
+          amount: amount,
+          borrower_id: borrower.id,
+          paid: false
+        )
       end
+    end
   end
 end
