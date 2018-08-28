@@ -1,16 +1,14 @@
 class Ability
   include CanCan::Ability
 
+  # references:
+  # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities:-Best-Practices
   def initialize(user)
-    @current_user = user
-    can :ban, User if admin_privilege
-    can :destroy, User if admin_privilege
-    # can :destroy, Group if admin_privilege ||
-  end
-
-  private
-
-  def admin_privilege
-    @current_user.admin? && @current_user.present?
+    return if user.blank?
+    # creator can manage his groups
+    can :destroy, Group, creator_id: user.id
+    return unless user.admin?
+    can :ban, User
+    can :destroy, User
   end
 end

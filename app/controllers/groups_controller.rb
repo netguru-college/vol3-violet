@@ -15,24 +15,28 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
-      if @group.save
-        redirect_to @group, notice: 'Group was successfully created.'
-      else
-        render :new, alert: 'Group coul not be created!'
-      end
+    if @group.save
+      redirect_to @group, notice: 'Group was successfully created.'
+    else
+      render :new, alert: 'Group coul not be created!'
+    end
   end
 
   def update
-      if @group.update(group_params)
-        redirect_to @group, notice: 'Group was successfully updated.'
-      else
-        render :edit, alert: 'Could not update group!'
-      end
+    if @group.update(group_params) && can?(:destroy, Group)
+      redirect_to @group, notice: 'Group was successfully updated.'
+    else
+      render :edit, alert: 'Could not update group!'
+    end
   end
 
   def destroy
-    @group.destroy
-    redirect_to groups_url, notice: 'Group was successfully deleted.'
+    if can?(:destroy, Group)
+      @group.destroy
+      redirect_to groups_path, notice: 'Group was successfully deleted.'
+    else
+      redirect_to @group, alert: 'Can\'t perform this operaiton!' unless can?(:destroy, User)
+    end
   end
 
   def bills
