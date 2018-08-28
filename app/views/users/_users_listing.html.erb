@@ -4,14 +4,8 @@
     <% @all_users.each do |user| %>
       <% unless user.admin? %>
           <tr>
-            <% unless user.avatar.file.nil? %>
-                <td><%= image_tag(user.avatar.url(:thumb), class: 'img-thumbnail') %></td>
-            <% end %>
-            <% if user.avatar.file.nil? %>
-              <td><%= image_tag(asset_path('default_avatar.png'), class: 'img-thumbnail')%></td>
-            <% end %>
+            <td><%= image_tag(user.avatar.url, class: 'img-thumbnail') %></td>
             <td><%= user.username %></td>
-            <!-- current_user.admin? -->
             <% if current_user.admin? %>
                 <% if user.blocked? %>
                   <td>Blocked</td>
