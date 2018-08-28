@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
-    # @groups = @user.groups.order(created_at: :desc)
   end
 
   def show; end
@@ -16,40 +15,27 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
-
-    respond_to do |format|
       if @group.save
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
+        redirect_to @group, notice: 'Group was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        render :new, alert: 'Group coul not be created!'
       end
-    end
   end
 
   def update
-    respond_to do |format|
       if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
+        redirect_to @group, notice: 'Group was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
+        render :edit, alert: 'Could not update group!'
       end
-    end
   end
 
   def destroy
     @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully deleted.' }
-      format.json { head :no_content }
-    end
+    redirect_to groups_url, notice: 'Group was successfully deleted.'
   end
 
   def bills
-    # byebug
     respond_to do |format|
       format.js
     end
