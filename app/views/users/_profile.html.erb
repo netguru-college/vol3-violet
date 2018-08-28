@@ -15,12 +15,15 @@
       <%= render 'users/debt_details', object: @user %>
   </div>
 
-  <% chosen_group = @user.groups.first %>
-
   <div class="row card-deck">
       <%= render 'users/group_details', object: @user %>
       <div class="card bill-details" id="bill-details">
-
+        <div class="card-header">
+          Bills
+        </div>
+        <div class="card-body">
+          <p>Choose a group to create bills</p>
+        </div>
       </div>
   </div>
 
