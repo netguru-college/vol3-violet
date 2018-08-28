@@ -287,8 +287,18 @@ Devise.setup do |config|
   # ActiveSupport.on_load(:devise_failure_app) do
   #   include Turbolinks::Controller
   # end
-  config.omniauth :facebook,
-    Rails.application.credentials[:facebook][:app_id],
-    Rails.application.credentials[:facebook][:app_secret],
-    callback_url: "http://localhost:3000/users/auth/facebook/callback"
+    # Add a OmniAuth providers.
+    User.omniauth_providers.each do |provider_name|
+      if provider_name == :developer
+        config.omniauth :developer
+      else
+        api_key = Rails.application.credentials[:facebook][:app_id]
+        api_secret = Rails.application.credentials[:facebook][:app_secret]
+        config.omniauth provider_name, api_key, api_secret
+      end
+    end
+  # config.omniauth :facebook,
+  #   Rails.application.credentials[:facebook][:app_id],
+  #   Rails.application.credentials[:facebook][:app_secret],
+  #   callback_url: "http://localhost:3000/users/#{}/facebook/callback"
 end
