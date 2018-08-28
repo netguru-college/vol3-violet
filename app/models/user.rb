@@ -16,8 +16,7 @@ class User < ApplicationRecord
                                inverse_of: :borrower
 
   has_many :debts_as_payer,    through: :bills_as_payer,
-                               source: :debts,
-                               inverse_of: :payer
+                               source: :debts
 
   has_many :bills_as_borrower, through: :debts_as_borrower,
                                source: :bill,
