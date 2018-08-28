@@ -1,9 +1,5 @@
 class CreateGroup
-  def initialize
+  def initialize; end
 
-  end
-
-  def call
-  end
-
+  def call; end
 end

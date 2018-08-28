@@ -1,5 +1,4 @@
 class Users::InvitationsController < Devise::InvitationsController
-
   private
 
   # called when creating invitation
@@ -15,5 +14,4 @@ class Users::InvitationsController < Devise::InvitationsController
     Analytics.report('invite.accept', resource.id)
     resource
   end
-
 end
