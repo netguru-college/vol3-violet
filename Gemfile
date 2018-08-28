@@ -9,6 +9,7 @@ gem 'cancancan', '~> 2.0'
 gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
+gem 'devise_invitable', '~> 1.7.0'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3.3'
 gem 'mini_magick'
@@ -32,6 +33,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem "letter_opener"
 end
 
 group :test do
