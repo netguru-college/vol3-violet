@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable, :omniauth_providers => [:facebook]
+    :recoverable, :rememberable, :validatable, :omniauthable,	omniauth_providers:	[:facebook]
+
   validates :username, presence: true, length: { in: 2..20 }
 
   has_many :group_users
