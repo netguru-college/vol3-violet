@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: %i[show edit update destroy bills]
 
   def index
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   def show; end
@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
       @group.users << User.find_by(email: params[:user][:address])
       redirect_to @group, notice: 'Group was successfully created.'
     else
-      render :new, alert: 'Group coul not be created!'
+      render :new, alert: 'Group couldn\'t not be created!'
     end
   end
 
@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params) && can?(:destroy, Group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
-      render :edit, alert: 'Could not update group!'
+      render :edit, alert: 'Couldn\'t not update group!'
     end
   end
 
