@@ -24,6 +24,8 @@ gem 'will_paginate', '~> 3.1.0'
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker'
+  gem 'pry', '~> 0.11.3'
+  gem 'pry-rails', '~> 0.3.6'
   gem 'rspec-rails', '~> 3.7'
 end
 
