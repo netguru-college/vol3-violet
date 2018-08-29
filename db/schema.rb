@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.string "avatar"
     t.boolean "admin", default: false, null: false
     t.boolean "blocked", default: false
+    t.string "provider"
+    t.string "uid"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
@@ -76,8 +78,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.integer "invitation_limit"
     t.integer "invited_by_id"
     t.string "invited_by_type"
-    t.string "provider"
-    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
