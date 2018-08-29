@@ -91,5 +91,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.carrewave_storage = :dropbox
+  config.carrierwave_storage = :dropbox
 end
