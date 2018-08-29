@@ -99,7 +99,10 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     user_name:            'mareczekNetguru123',
-    password:             'trudnehaslo',
+    password:              Rails.application.credentials[:smtp][:password],
     authentication:       'plain',
     enable_starttls_auto: true }
+
+  config.carrierwave_storage = :dropbox
+
 end
