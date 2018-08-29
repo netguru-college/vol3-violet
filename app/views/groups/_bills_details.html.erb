@@ -1,0 +1,39 @@
+<div class="card-header">
+  Bills for <%= group.name %> group
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-3">
+      <p><strong>Title</strong></p>
+    </div>
+    <div class="col-md-3">
+      <p><strong>Amount</strong></p>
+    </div>
+    <div class="col-md-3">
+      <p><strong>Type</strong></p>
+    </div>
+    <div class="col-md-3">
+      <p><strong>Actions</strong></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <% group.bills.each do |bill| %>
+      <div class="col-md-3">
+        <p><%= bill.title %></p>
+      </div>
+      <div class="col-md-3">
+        <p><%= number_to_currency(bill.amount) %></p>
+      </div>
+      <div class="col-md-3">
+        <p><%= bill.split_type %></p>
+      </div>
+      <div class="col-md-3">
+        <ul class="not-decorated-list">
+          <li><%= link_to 'Edit', edit_group_bill_path(bill) %></li>
+          <li><%= link_to 'Delete', group_bill_path(bill), method: :delete %></li>
+      </div>
+    <% end %>
+  </div>
+  <%= link_to 'Create new bill', new_group_bill_path(group) %>
+</div>

@@ -57,11 +57,16 @@ color: #1eb28a;
   padding: 20px;
 }
 
-
 .not-decorated-list {
   list-style-type: none;
+  padding-left: 0;
 }
 
 .navbar-link mx-lg-1 {
   margin: 0;
+}
+
+.row.card-deck {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
