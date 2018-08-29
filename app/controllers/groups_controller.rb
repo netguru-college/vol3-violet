@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
     if @group.save
       User.invite!({ email: params[:user][:address] }, current_user)
       @group.users << User.find_by(email: params[:user][:address])
+      @group.users << current_user
       redirect_to @group, notice: 'Group was successfully created.'
     else
       render :new, alert: 'Group couldn\'t not be created!'
