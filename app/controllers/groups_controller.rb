@@ -11,7 +11,9 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
 
-  def edit; end
+  def edit
+    redirect_to root_path unless can?(:update, @group)
+  end
 
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
@@ -25,7 +27,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params) && can?(:destroy, Group)
+    if @group.update(group_params) && can?(:update, @group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
       render :edit, alert: 'Could not update group!'
