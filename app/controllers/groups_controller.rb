@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
     if @group.save
+      User.invite!({ email: params[:user][:address] }, current_user)
       redirect_to @group, notice: 'Group was successfully created.'
     else
       render :new, alert: 'Group coul not be created!'
