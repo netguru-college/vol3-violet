@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_095746) do
+ActiveRecord::Schema.define(version: 2018_08_28_172923) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_08_28_095746) do
     t.decimal "amount", precision: 8, scale: 2, default: "0.0"
     t.string "split_type"
     t.bigint "group_id"
+    t.string "title"
     t.index ["group_id"], name: "index_bills_on_group_id"
     t.index ["payer_id"], name: "index_bills_on_payer_id"
   end
@@ -52,11 +54,13 @@ ActiveRecord::Schema.define(version: 2018_08_28_095746) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id"
+    t.index ["creator_id"], name: "index_groups_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "encrypted_password", default: ""
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -68,7 +72,15 @@ ActiveRecord::Schema.define(version: 2018_08_28_095746) do
     t.boolean "blocked", default: false
     t.string "provider"
     t.string "uid"
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.integer "invited_by_id"
+    t.string "invited_by_type"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

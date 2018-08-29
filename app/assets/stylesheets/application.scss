@@ -57,11 +57,33 @@ color: #1eb28a;
   padding: 20px;
 }
 
-
 .not-decorated-list {
   list-style-type: none;
+  padding-left: 0;
 }
 
 .navbar-link mx-lg-1 {
   margin: 0;
+}
+
+.row.card-deck {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.payers-list {
+  color: red;
+}
+
+.borrowers-list {
+  color: green;
+}
+
+.users-listing {
+  margin: 20px;
+  padding: 20px;
+}
+
+.users-listing:hover {
+  background-color: lightgrey;
 }
