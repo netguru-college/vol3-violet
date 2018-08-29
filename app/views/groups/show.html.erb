@@ -2,7 +2,6 @@
 <div>
   <div class="container">
     <h1 class="display-4"><%= @group.name %><span class="badge badge-dark"></span></h1>
-    <%# <table> %>
     <thead>
       <tr>
         <th>Bill's name</th>
@@ -13,25 +12,12 @@
       </tr>
     </thead>
     <br>
-
-    <%# <tbody> %>
-      <%#<% @bills.each do |group| %>
-        <%# <tr>
-          <td><%= bills.name %></td>
-          <%# <td><%= "Amount" %></td> %>
-          <%# <td><%= bill.created_at.strftime("%m/%d/%Y") %></td> %>
-          <%# <td><%= "Payer" %></td> %>
-          <%# <td><%= link_to 'Show', group %></td> %>
-        <%# </tr> %>
-      <%# <% end %> %>
-    <%# </tbody> %>
-  <%# </table> %>
-  <%# <br> %> %>
-  <%# <%= link_to "Create new bill", new_bill_path %>
-
     <br>
     <%= link_to 'Back', groups_path, class: "btn btn-outline-secondary" %>
-    <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-outline-success" %>
-    <%= link_to 'Delete', @group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    <!-- get rid of this code! -->
+    <% if current_user ==  @group.creator || current_user.admin? %>
+      <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-outline-success"  %>
+      <%= link_to 'Delete', @group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"%>
+    <% end %>
   </div>
 </div>

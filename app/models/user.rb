@@ -21,4 +21,5 @@ class User < ApplicationRecord
   has_many :bills_as_borrower, through: :debts_as_borrower,
                                source: :bill,
                                inverse_of: :borrowers
+  has_many :created_groups, foreign_key: :creator_id, class_name: 'Group', inverse_of: :users
 end
