@@ -43,5 +43,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  # config.carrierwave_storage = :file
+  config.carrierwave_storage = :file
 end
