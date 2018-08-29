@@ -3,7 +3,6 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
-    # @groups = @user.groups.order(created_at: :desc)
   end
 
   def show; end
@@ -15,42 +14,33 @@ class GroupsController < ApplicationController
   def edit; end
 
   def create
-    @group = Group.new(group_params)
-
-    respond_to do |format|
-      if @group.save
-        User.invite!({ email: params[:user][:address] }, current_user)
-        format.html { redirect_to @group, notice: 'Group was successfully created.' }
-        format.json { render :show, status: :created, location: @group }
-      else
-        format.html { render :new }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
+    @group = Group.new(group_params.merge(creator_id: current_user.id))
+    if @group.save
+      User.invite!({ email: params[:user][:address] }, current_user)
+      redirect_to @group, notice: 'Group was successfully created.'
+    else
+      render :new, alert: 'Group coul not be created!'
     end
   end
 
   def update
-    respond_to do |format|
-      if @group.update(group_params)
-        format.html { redirect_to @group, notice: 'Group was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group }
-      else
-        format.html { render :edit }
-        format.json { render json: @group.errors, status: :unprocessable_entity }
-      end
+    if @group.update(group_params) && can?(:destroy, Group)
+      redirect_to @group, notice: 'Group was successfully updated.'
+    else
+      render :edit, alert: 'Could not update group!'
     end
   end
 
   def destroy
-    @group.destroy
-    respond_to do |format|
-      format.html { redirect_to groups_url, notice: 'Group was successfully deleted.' }
-      format.json { head :no_content }
+    if can?(:destroy, Group)
+      @group.destroy
+      redirect_to groups_path, notice: 'Group was successfully deleted.'
+    else
+      redirect_to @group, alert: 'Can\'t perform this operaiton!' unless can?(:destroy, User)
     end
   end
 
   def bills
-    # byebug
     respond_to do |format|
       format.js
     end
