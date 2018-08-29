@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.string "avatar"
     t.boolean "admin", default: false, null: false
     t.boolean "blocked", default: false
+    t.string "provider"
+    t.string "uid"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"

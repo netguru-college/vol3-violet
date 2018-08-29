@@ -1,4 +1,5 @@
 <%= will_paginate @all_users, class: 'apple_pagination' %>
+
 <div class="container">
   <% @all_users.each do |user| %>
     <% unless user.admin? %>
@@ -19,7 +20,7 @@
             <p>Blocked</p>
           </div>
           <div class="col-md-3">
-            <%= link_to 'Unban', user_path(id: user.id, user: { blocked: false }),
+            <%= link_to 'Unban', ban_path(user),
                 controller: :users_controller, action: :update, method: :put,
                 data: {confirm: "You sure?"}, role: 'button',
                 class: 'btn btn-success ml-2r' %>
