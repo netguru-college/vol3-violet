@@ -12,6 +12,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path unless can?(:update, @group)
     set_group
   end
 
@@ -27,7 +28,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params) && can?(:destroy, @group)
+    if @group.update(group_params) && can?(:update, @group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
       render :edit, alert: 'Couldn\'t not update group!'

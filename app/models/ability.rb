@@ -5,7 +5,11 @@ class Ability
   # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities:-Best-Practices
   def initialize(user)
     return if user.blank?
-    # creator can manage his groups
+    # only group member can edit the group
+    can :update, Group do |group|
+      group.users.include? user
+    end
+    # only creator can delete his groups
     can :destroy, Group, creator_id: user.id
     can :destroy, Bill, payer_id: user.id
     can :edit, Bill, payer_id: user.id
