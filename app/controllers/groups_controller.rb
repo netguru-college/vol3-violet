@@ -11,7 +11,9 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
 
-  def edit; end
+  def edit
+    set_group
+  end
 
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
