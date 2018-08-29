@@ -70,3 +70,20 @@ color: #1eb28a;
   margin-top: 30px;
   margin-bottom: 30px;
 }
+
+.payers-list {
+  color: red;
+}
+
+.borrowers-list {
+  color: green;
+}
+
+.users-listing {
+  margin: 20px;
+  padding: 20px;
+}
+
+.users-listing:hover {
+  background-color: lightgrey;
+}

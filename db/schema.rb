@@ -34,12 +34,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.index ["borrower_id"], name: "index_debts_on_borrower_id"
   end
 
-  create_table "group_models", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "group_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
