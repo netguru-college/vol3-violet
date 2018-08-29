@@ -2,18 +2,8 @@ Rails.application.configure do
   config.cache_classes = false
   config.eager_load = false
   config.consider_all_requests_local = true
-  config.action_mailer.default_url_options = { host: 'nccappviolet.herokuapp.com' }
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                 587,
-    user_name:            'mareczekNetguru123',
-    password:             'trudnehaslo',
-    authentication:       'plain',
-    enable_starttls_auto: true }
 
   if Rails.root.join('tmp', 'caching-dev.txt').exist?
     config.action_controller.perform_caching = true
