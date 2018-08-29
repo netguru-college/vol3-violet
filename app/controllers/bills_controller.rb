@@ -4,7 +4,6 @@ class BillsController < ApplicationController
   end
 
   def create
-
     @bill = Bills::CreateService.new(bill_params, current_user.id).call
     if @bill.persisted?
       flash[:success] = 'Bill created.'
