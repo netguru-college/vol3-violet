@@ -36,17 +36,17 @@
         </div>
         <div class="col-md-3">
           <ul class="not-decorated-list">
+              <li><%= link_to 'Show bills', group_bills_ajax_path(group.id), remote: true %></li>
             <% if can? :edit, group %>
               <li><%= link_to 'Edit', edit_group_path(group) %></li>
             <% end %>
-            <% if can? :delete, group %>
-            <li><%= link_to 'Delete', group_path(group), method: :delete %></li>
+            <% if can? :destroy, group %>
+              <li><%= link_to 'Delete', group_path(group), method: :delete %></li>
             <% end %>
-            <li><%= link_to 'Show bills', group_bills_ajax_path(group.id), remote: true %></li>
           </ul>
         </div>
       </div>
     <% end %>
-    <%= link_to "Create new group", new_group_path %>
+    <%= link_to "Create new group", new_group_path, class: "btn btn-outline-info" %>
   </div>
 </div>

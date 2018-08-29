@@ -1,2 +1,3 @@
-console.log("Hello");
+$("#bill-details").hide();
 $("#bill-details").html("<%= escape_javascript(render partial: 'bills_details', locals: {group: @group} ) %>");
+$("#bill-details").fadeIn();
