@@ -11,6 +11,9 @@ class Ability
     end
     # only creator can delete his groups
     can :destroy, Group, creator_id: user.id
+    can :destroy, Bill, payer_id: user.id
+    can :edit, Bill, payer_id: user.id
+    can :update, Bill, payer_id: user.id
     return unless user.admin?
     can :ban, User
     can :destroy, User

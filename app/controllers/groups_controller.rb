@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: %i[show edit update destroy bills]
 
   def index
-    @groups = Group.all
+    @groups = current_user.groups
   end
 
   def show; end
@@ -13,6 +13,7 @@ class GroupsController < ApplicationController
 
   def edit
     redirect_to root_path unless can?(:update, @group)
+    set_group
   end
 
   def create
@@ -22,7 +23,7 @@ class GroupsController < ApplicationController
       @group.users << User.find_by(email: params[:user][:address])
       redirect_to @group, notice: 'Group was successfully created.'
     else
-      render :new, alert: 'Group coul not be created!'
+      render :new, alert: 'Group couldn\'t not be created!'
     end
   end
 
@@ -30,12 +31,12 @@ class GroupsController < ApplicationController
     if @group.update(group_params) && can?(:update, @group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
-      render :edit, alert: 'Could not update group!'
+      render :edit, alert: 'Couldn\'t not update group!'
     end
   end
 
   def destroy
-    if can?(:destroy, Group)
+    if can?(:destroy, @group)
       @group.destroy
       redirect_to groups_path, notice: 'Group was successfully deleted.'
     else

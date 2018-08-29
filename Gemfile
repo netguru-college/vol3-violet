@@ -7,6 +7,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1.3'
 gem 'cancancan', '~> 2.0'
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-dropbox'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'devise_invitable', '~> 1.7.0'

@@ -2,7 +2,6 @@ Rails.application.configure do
   config.cache_classes = false
   config.eager_load = false
   config.consider_all_requests_local = true
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
@@ -50,4 +49,5 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.carrierwave_storage = :file
 end
