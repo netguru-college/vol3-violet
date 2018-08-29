@@ -14,20 +14,25 @@ Remind friends about unsettled debt: sms or notification
 ## System dependencies
 Ruby 2.5.1
 Rails 5.2.0
+
+Cancancan
+Carrierwave
 Bootstrap 4.1.3
 Devise
-Carrierwave
+Devise_invitable
+Faker
+Letter_opener
+Pry
+Shoulda-matchers
+Will_paginate
 
-* Configuration `bundle install`
+* Configuration
+`bundle install`
 
-* Database creation `rails db:setup`
+* Database creation
+`rails db:setup`
 
 * Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+`rails db:migrate`
 
 * Find SplitGuru on Heroku: https://nccappviolet.herokuapp.com/
