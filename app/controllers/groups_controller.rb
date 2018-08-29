@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params.merge(creator_id: current_user.id))
     if @group.save
       User.invite!({ email: params[:user][:address] }, current_user)
+      current_user.groups << @group
       redirect_to @group, notice: 'Group was successfully created.'
     else
       render :new, alert: 'Group coul not be created!'
@@ -26,7 +27,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params) && can?(:destroy, Group)
+    if @group.update(group_params) && can?(:destroy, @group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
       render :edit, alert: 'Could not update group!'
@@ -34,7 +35,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    if can?(:destroy, Group)
+    if can?(:destroy, @group)
       @group.destroy
       redirect_to groups_path, notice: 'Group was successfully deleted.'
     else

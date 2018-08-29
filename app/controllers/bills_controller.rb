@@ -1,4 +1,6 @@
 class BillsController < ApplicationController
+  before_action :set_bill, only: %i[destroy edit update]
+
   def new
     @bill = Bill.new
   end
@@ -16,22 +18,34 @@ class BillsController < ApplicationController
   end
 
   def destroy
-    @bill = Bill.find(params[:id])
-    @bill.destroy
-    redirect_to user_path(current_user), notice: 'Bill was successfully deleted'
+    if can?(:destroy, @bill)
+      @bill.destroy
+      redirect_to user_path(current_user), notice: 'Bill was successfully deleted'
+    else
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:destroy, @bill)
+    end
   end
 
   def edit
-    @bill = Bill.find(params[:id])
+    if !can?(:edit, @bill)
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:update, @bill)
+    end
   end
 
   def update
-    @bill = Bill.find(params[:id])
-    @bill.update(bill_params[:bill])
-    redirect_to user_path(current_user)
+    if can?(:update, @bill)
+      @bill.update(bill_params[:bill])
+      redirect_to user_path(current_user), notice: 'Bill was succesfully updated'
+    else
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:update, @bill)
+    end
   end
 
   private
+
+  def set_bill
+    @bill = Bill.find(params[:id])
+  end
 
   def bill_params
     params.permit(:group_id, bill: %i[id payer_id amount split_type title])
