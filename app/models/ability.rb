@@ -16,3 +16,4 @@ class Ability
     can :destroy, User
   end
 end
+
