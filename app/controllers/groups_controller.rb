@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+  include Stringable
   before_action :set_group, only: %i[show edit update destroy bills]
 
   def index
@@ -16,11 +17,14 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
     if @group.save
-      User.invite!({ email: params[:user][:address] }, current_user)
-      @group.users << User.find_by(email: params[:user][:address])
+      emails = split_on_white_space(params[:emails])
+      emails.each do |email|
+        User.invite!({ email: email }, current_user)
+        @group.users << User.find_by(email: email)
+      end
       redirect_to @group, notice: 'Group was successfully created.'
     else
-      render :new, alert: 'Group coul not be created!'
+      render :new, alert: 'Group could not be created!'
     end
   end
 
