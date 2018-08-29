@@ -22,14 +22,12 @@ class BillsController < ApplicationController
       @bill.destroy
       redirect_to user_path(current_user), notice: 'Bill was successfully deleted'
     else
-      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:destroy, @bill)
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!' unless can?(:destroy, @bill)
     end
   end
 
   def edit
-    if !can?(:edit, @bill)
-      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:update, @bill)
-    end
+    redirect_to user_path(current_user), alert: 'Can\'t perform this operation!' unless can?(:edit, @bill)
   end
 
   def update
@@ -37,7 +35,7 @@ class BillsController < ApplicationController
       @bill.update(bill_params[:bill])
       redirect_to user_path(current_user), notice: 'Bill was succesfully updated'
     else
-      redirect_to user_path(current_user), alert: 'Can\'t perform this operaiton!' unless can?(:update, @bill)
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!' unless can?(:update, @bill)
     end
   end
 
