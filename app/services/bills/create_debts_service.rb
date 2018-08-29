@@ -16,7 +16,7 @@ module Bills
 
     def create_debts
       borrowers.each do |borrower|
-        Debt.create(
+        Debt.create!(
           bill_id: bill.id,
           amount: amount,
           borrower_id: borrower.id,

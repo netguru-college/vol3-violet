@@ -1,25 +1,21 @@
 module Bills
   class CreateService
-    def initialize(params)
-      @amount = params[:amount].to_f.round(2)
-      @borrowers = params[:borrowers]
+    def initialize(params, payer_id)
+      @amount = params[:bill][:amount].to_f.round(2)
       @group_id = params[:group_id]
-      @payer_id = params[:payer_id]
+      @payer_id = payer_id
+      @borrowers = Group.find(group_id).users.where.not(id: @payer_id)
       @split_type = params.fetch(:split_type, 'equal')
-      @splitted_amount = (amount / (borrowers.count + 1))
     end
 
     def call
-      if bill.save
-        Bills::CreateDebtsService.new(bill: bill, borrowers: borrowers, amount: splitted_amount).call
-      else
-        false
-      end
+      Bills::CreateDebtsService.new(bill: bill, borrowers: borrowers, amount: splitted_amount).call if bill.save
+      bill
     end
 
     private
 
-    attr_reader :amount, :borrowers, :group_id, :payer_id, :split_type, :splitted_amount
+    attr_reader :amount, :borrowers, :group_id, :payer_id, :split_type
 
     def bill
       @bill ||= Bill.new(
@@ -29,6 +25,14 @@ module Bills
         payer_id: payer_id,
         split_type: split_type
       )
+    end
+
+    def splitted_amount
+      case split_type
+      when 'equal'
+        amount / (borrowers.count + 1)
+      end
+      # handle other cases
     end
   end
 end
