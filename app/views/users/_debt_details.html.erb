@@ -4,12 +4,12 @@
   </div>
   <div class="card-body">
     <ul class="not-decorated-list payers-list">
-      <% @user.debts_as_borrower.each do |debt| %>
+      <% @user.debts_as_borrower.where(paid: false).where.not(amount: 0).each do |debt| %>
         <li><%= "You owe #{ debt.bill.payer.username } #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %></li>
       <% end%>
     </ul>
     <ul class="not-decorated-list borrowers-list">
-      <% @user.debts_as_payer.each do |debt| %>
+      <% @user.debts_as_payer.where(paid: false).where.not(amount: 0).each do |debt| %>
         <li><%= " #{ debt.borrower.username } owes you #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %> <%= link_to "Settle", settle_debt_path(debt_id: debt.id), method: :put %> </li>
       <% end%>
     </ul>
