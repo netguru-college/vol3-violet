@@ -20,7 +20,7 @@ class BillsController < ApplicationController
       @bill.destroy
       redirect_to user_path(current_user), notice: 'Bill was successfully deleted'
     else
-      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!' unless can?(:destroy, @bill)
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!'
     end
   end
 
@@ -30,10 +30,16 @@ class BillsController < ApplicationController
 
   def update
     if can?(:update, @bill)
-      @bill.update(bill_params[:bill])
-      redirect_to user_path(current_user), notice: 'Bill was succesfully updated'
+      @bill.destroy
+      @bill = Bills::CreateService.new(bill_params, current_user.id).call
+      if @bill.persisted?
+        redirect_to group_path(params[:group_id]), notice: 'Bill updated.'
+      else
+        flash.now[:alert] = 'Something went wrong.  Please check the form.'
+        render :news
+      end
     else
-      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!' unless can?(:update, @bill)
+      redirect_to user_path(current_user), alert: 'Can\'t perform this operation!'
     end
   end
 
