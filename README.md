@@ -4,7 +4,7 @@ Hello from Violet team. We are: **Tomek**, **Kuba**, **Mikołaj**, **Thu** and o
 
 When you’re out with your friends, splitting the bill can get complicated. Do you divide the cost evenly or itemize everyone’s drinks and entrées? How much should each person chip in for the tip? And splitting larger bills—like rent, utilities, travel expenses can add even more complexity.
 
-Well, we’ve got some good news: SplitGuru keeps a running balance of who owes who what and integrate with your contacts to send notifications and reminders to your friends. It splits the bills you share with friends, tells you how much you owe to each of them, and allows you to pay from your prepaid account on the app or settle with cash in real life. SplitGuru is born to make your life easier and make your friendship last longer :)
+Well, we’ve got some good news: SplitGuru keeps a running balance of who owes who what and integrate with your contacts to send notifications and reminders to your friends. It splits the bills you share with friends, tells you how much you owe to each of them, and allows you to pay from your prepaid account on the app or settle with cash in real life. SplitGuru is born to make your life easier and make your friendship last longer :) Find us [here!](https://nccappviolet.herokuapp.com/)
 
 ![welcome_view](/app/assets/images/readme.png)
 
@@ -40,5 +40,3 @@ Well, we’ve got some good news: SplitGuru keeps a running balance of who owes 
 
 * Database initialization
 `rails db:migrate`
-
-* Find SplitGuru [here!](https://nccappviolet.herokuapp.com/)
