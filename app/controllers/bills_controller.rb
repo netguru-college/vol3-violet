@@ -8,9 +8,7 @@ class BillsController < ApplicationController
   def create
     @bill = Bills::CreateService.new(bill_params, current_user.id).call
     if @bill.persisted?
-      # flash[:success] = 'Bill created.'
-      # redirect_to group_bill_path(params[:group_id], @bill)
-      redirect_to group_path(params[:group_id]), notice: 'Bill created'
+      redirect_to group_path(params[:group_id]), notice: 'Bill created.'
     else
       flash.now[:alert] = 'Something went wrong.  Please check the form.'
       render :news
