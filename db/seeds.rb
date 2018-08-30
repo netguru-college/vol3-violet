@@ -27,3 +27,8 @@ end
   Group.offset(rand(Group.count)).first.bills << bill
 end
 
+300.times do
+  random_group = Group.offset(rand(Group.count)).first
+  random_user = User.offset(rand(User.count)).first
+  random_group.users << random_user
+end
