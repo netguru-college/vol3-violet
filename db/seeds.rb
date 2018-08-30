@@ -12,8 +12,18 @@ User.find_or_create_by(email: 'admin@aa.pl') do |user|
 end
 
 5.times do
-    User.find_or_create_by(email: "#{Faker::Hacker.adjective}@aa.pl") do |user|
-        user.username = Faker::Hacker.adjective
-        user.password = '123456'
-    end
+  User.create(email: "#{Faker::Hacker.unique.adjective}@aa.pl", username: Faker::Hacker.adjective, password: '123456')
 end
+
+6.times do
+  user = User.where(email: 'user@aa.pl').first
+  group = Group.create(name: Faker::University.name, creator_id: user.id)
+  user.groups << group
+end
+
+300.times do
+  random_user = User.offset(rand(User.count)).first
+  bill = Bill.create(payer_id: random_user.id, amount: Random.new.rand(10..1000), split_type: 'equal', title: Faker::HarryPotter.spell)
+  Group.offset(rand(Group.count)).first.bills << bill
+end
+
