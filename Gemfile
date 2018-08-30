@@ -11,6 +11,7 @@ gem 'carrierwave-dropbox'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'devise_invitable', '~> 1.7.0'
+gem 'faker'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails', '~> 4.3.3'
 gem 'mini_magick'
@@ -22,7 +23,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'will_paginate', '~> 3.1.0'
-gem 'faker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
