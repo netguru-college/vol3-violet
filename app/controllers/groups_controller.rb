@@ -33,6 +33,12 @@ class GroupsController < ApplicationController
 
   def update
     if @group.update(group_params) && can?(:update, @group)
+      addresses = params[:user][:address].split('; ')
+      addresses.each do |address|
+        User.invite!({ email: address }, current_user)
+        @group.users << User.find_by(email: address)
+      end
+      @group.users << current_user
       redirect_to @group, notice: 'Group was successfully updated.'
     else
       render :edit, alert: 'Couldn\'t not update group!'
