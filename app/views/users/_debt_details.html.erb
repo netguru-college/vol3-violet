@@ -10,7 +10,7 @@
     </ul>
     <ul class="not-decorated-list borrowers-list">
       <% @user.debts_as_payer.each do |debt| %>
-        <li><%= " #{ debt.borrower.username } owes you #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %></li>
+        <li><%= " #{ debt.borrower.username } owes you #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %> <%= link_to "Settle", settle_debt_path(debt_id: debt.id), method: :put %> </li>
       <% end%>
     </ul>
   </div>

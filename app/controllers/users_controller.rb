@@ -33,6 +33,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def settle_debt
+    # return unless can?(:update, @bill) - coś jest nie tak
+    debt = Debt.find(params[:debt_id])
+    debt.update(paid: true)
+  end
+
   private
 
   def user_params
