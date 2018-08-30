@@ -5,12 +5,12 @@
   <div class="card-body">
     <ul class="not-decorated-list payers-list">
       <% @user.debts_as_borrower.each do |debt| %>
-        <li>You owe <%= debt.bill.payer.username %> <%= number_to_currency(debt.amount) %></li>
+        <li><%= "You owe #{ debt.bill.payer.username } #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %></li>
       <% end%>
     </ul>
     <ul class="not-decorated-list borrowers-list">
       <% @user.debts_as_payer.each do |debt| %>
-        <li><%= debt.borrower.username %> owes you <%= number_to_currency(debt.amount) %></li>
+        <li><%= " #{ debt.borrower.username } owes you #{ number_to_currency(debt.amount) } for #{ debt.bill.title } bill." %></li>
       <% end%>
     </ul>
   </div>

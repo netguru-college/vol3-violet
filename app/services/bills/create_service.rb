@@ -21,7 +21,6 @@ module Bills
     def bill
       @bill ||= Bill.new(
         amount: amount,
-        borrowers: borrowers,
         group_id: group_id,
         payer_id: payer_id,
         split_type: split_type,
