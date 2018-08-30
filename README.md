@@ -4,6 +4,8 @@ Hello from SplitGuru Team. We are: Tomek, Kuba, Mikołaj, Thu and our super cool
 
 We have created an awesome app called SplitGuru which splits the bills you share with friends and tells you how much you owe to each of them after the whole event. SplitGuru allows you to pay from your prepaid account on the app or settle with cash in real life. In the other case, it also reminds your friends about their debts to you and their duties. SplitGuru is born to make your life easier and make your friendship last longer :)
 
+![welcome_view](/app/assets/images/readme.png)
+
 ## Features
 * Create bills for many groups
 * Split bills with many options
