@@ -22,5 +22,4 @@ class User < ApplicationRecord
                                source: :bill,
                                inverse_of: :borrowers
   has_many :created_groups, foreign_key: :creator_id, class_name: 'Group', inverse_of: :users
-
 end
