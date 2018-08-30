@@ -2,7 +2,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
   devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable, invite_for: 2.weeks
-  validates :username, presence: true, length: { in: 2..20 }
+  validates :username, presence: true, length: { in: 2..20 }, uniqueness: true
 
   has_many :group_users
   has_many :groups,            through: :group_users
@@ -22,4 +22,5 @@ class User < ApplicationRecord
                                source: :bill,
                                inverse_of: :borrowers
   has_many :created_groups, foreign_key: :creator_id, class_name: 'Group', inverse_of: :users
+
 end
