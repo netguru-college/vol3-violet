@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
 
   def settle_debt
-    # return unless can?(:update, @bill) - coś jest nie tak
+    # return unless can?(:update, @bill) - cos jest nie tak
     debt = Debt.find(params[:debt_id])
     debt.update(paid: true)
     redirect_to user_path(current_user) #:show, id: current_user.id#user_path(current_user.id)
