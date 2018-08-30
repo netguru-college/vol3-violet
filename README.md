@@ -41,4 +41,4 @@ Well, we’ve got some good news: SplitGuru keeps a running balance of who owes 
 * Database initialization
 `rails db:migrate`
 
-* Find SplitGuru [here]!(https://nccappviolet.herokuapp.com/)
+* Find SplitGuru [here!](https://nccappviolet.herokuapp.com/)
