@@ -13,10 +13,12 @@ class User < ApplicationRecord
 
   has_many :debts_as_borrower, class_name: 'Debt',
                                foreign_key: 'borrower_id',
-                               inverse_of: :borrower
+                               inverse_of: :borrower,
+                               dependent: :destroy
 
   has_many :debts_as_payer,    through: :bills_as_payer,
-                               source: :debts
+                               source: :debts,
+                               dependent: :destroy
 
   has_many :bills_as_borrower, through: :debts_as_borrower,
                                source: :bill,
