@@ -16,6 +16,7 @@ We have created an awesome app called SplitGuru which splits the bills you share
 ## System dependencies
 * Ruby 2.5.1
 * Rails 5.2.0
+* PostgreSQL
 
 - `gem 'cancancan', '~> 2.0'`
 - `gem 'carrierwave', '~> 1.0'`
