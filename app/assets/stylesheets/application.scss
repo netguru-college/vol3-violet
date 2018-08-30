@@ -46,15 +46,32 @@ color: #1eb28a;
 }
 
 .jumbotron {
-  background-image: asset-url("park_guell.jpg");
+  background-image: asset-url("backyard_night.jpg");
   background-size: cover;
   height: 700px;
 }
 
+.jumbotron h1 {
+  color: #ffffff;
+  margin-top: 20px;
+  margin-left: 90px;
+}
+
+.jumbotron h2 {
+  color: #000000;
+}
+
+.lead {
+  color: #ffffff;
+  size: 20px;
+  margin-left: 90px;
+}
+
 .log-in-form {
   background-color: #ffffff;
-  opacity: 0.8;
+  opacity: 0.6;
   padding: 20px;
+  height: 400px;
 }
 
 .not-decorated-list {
@@ -90,4 +107,13 @@ color: #1eb28a;
 
 #notice {
   display: none;
+}
+
+.horizontal > li {
+  display: inline;
+}
+
+.members, .buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

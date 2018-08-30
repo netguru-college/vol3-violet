@@ -16,21 +16,23 @@
       </div>
     </div>
 
-    <div class="row">
-      <% @groups.each do |group| %>
+    <% @groups.each do |group| %>
+      <div class="row">
         <div class="col-md-4">
-          <p><%= group.name %></p>
+          <p><%= link_to group.name, group_path(group) %></p>
         </div>
         <div class="col-md-4">
           <p><%= group.created_at.strftime("%m/%d/%Y") %></p>
         </div>
         <div class="col-md-4">
-          <% group.users.each do |member| %>
-              <ul><%= link_to member.username, user_path(member) %></ul>
-          <% end %>
+          <ul class="not-decorated-list">
+            <% group.users.each do |member| %>
+              <li><%= link_to member.username, user_path(member) %></li>
+            <% end %>
+          </ul>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-  <%= link_to "Create new group", new_group_path %>
+  <%= link_to "Create new group", new_group_path, class: "btn btn-outline-info" %>
 </div>
