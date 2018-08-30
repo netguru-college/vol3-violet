@@ -22,6 +22,7 @@
           <ul class="not-decorated-list borrowers-list indentation">
             <% @user.debts_as_payer.where(paid: false).where.not(amount: 0).where(borrower: borrower).each do |debt| %>
               <li><%= number_to_currency(debt.amount) %> for <%= debt.bill.title %> bill</li>
+              <%= link_to "Settle", settle_debt_path(debt_id: debt.id), method: :put %> </li>
             <% end%>
           </ul>
         </li>

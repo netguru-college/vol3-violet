@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'group_bills_ajax/:id', to: 'groups#bills', as: 'group_bills_ajax'
   resources :group_users, path: :users, module: :groups
   get 'users/:id/ban', to: 'users#ban', as: 'ban'
+  put 'settle_debt/:debt_id', to: 'users#settle_debt', as: 'settle_debt'
 end
