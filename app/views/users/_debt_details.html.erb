@@ -4,11 +4,11 @@
   </div>
   <div class="card-body">
     <ul class="not-decorated-list payers-list">
-      <% @user.debts_as_borrower.amount_grouped_by_payer.each do |payer, amount| %>
+      <% @user.debts_as_borrower.where(paid: false).where.not(amount: 0).amount_grouped_by_payer.each do |payer, amount| %>
         <li>You owe <%= number_to_currency(amount) %> to <%= payer %></li>
         <li>
           <ul class="not-decorated-list payers-list indentation">
-            <% @user.debts_as_borrower.each do |debt| %>
+            <% @user.debts_as_borrower.where(paid: false).where.not(amount: 0).each do |debt| %>
               <li><%= number_to_currency(debt.amount) %> for <%= debt.bill.title %> bill</li>
             <% end%>
           </ul>
@@ -16,7 +16,7 @@
       <% end %>
     </ul>
     <ul class="not-decorated-list borrowers-list">
-      <% @user.debts_as_payer.amount_grouped_by_borrower.each do |borrower, amount| %>
+      <% @user.debts_as_payer.where(paid: false).where.not(amount: 0).amount_grouped_by_borrower.each do |borrower, amount| %>
         <li><%= borrower.username %> owes you <%= number_to_currency(amount) %></li>
         <li>
           <ul class="not-decorated-list borrowers-list indentation">
