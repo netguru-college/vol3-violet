@@ -91,3 +91,12 @@ color: #1eb28a;
 #notice {
   display: none;
 }
+
+.horizontal > li {
+  display: inline;
+}
+
+.members, .buttons {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
